@@ -10,7 +10,6 @@
  */
 
 var current_player = 0;
-const statusOfDice = document.getSelection(".dice");
 document.querySelector(".dice").style.display = 'none';
 
 function getRandomNumber() {
@@ -27,32 +26,27 @@ function swapPlayer() {
 }
 
 function isWinner() {
-    return (Number(document.querySelector(".player-" + current_player.toString() + "-panel .player-score").innerHTML) >= 30);
+    return (Number(document.getElementById("score-" + current_player.toString()).innerHTML) >= 30);
 }
 
 document.querySelector(".btn-roll").addEventListener("click", function () {
     const numberInDice = getRandomNumber();
     document.querySelector(".dice").style.display = 'block';
     document.querySelector(".dice").src = "dice-" + numberInDice.toString() + ".png";
-    const showCurrentScore = document.querySelector(".player-" + current_player.toString() + "-panel .player-current-score");
-    const currentScore = Number(showCurrentScore.innerHTML);
+    const currentScore = Number(document.getElementById("current-" + current_player.toString()).innerHTML);
     // In case number 1
     if (numberInDice === 1) {
-        showCurrentScore.innerHTML = "0";
+        document.getElementById("current-" + current_player.toString()).innerHTML = "0";
         swapPlayer();
         return;
     }
-    showCurrentScore.innerHTML = (currentScore + numberInDice).toString();
+    document.getElementById("current-" + current_player.toString()).innerHTML = (currentScore + numberInDice).toString();
 });
 
 document.querySelector(".btn-hold").addEventListener("click", function () {
-    const showCurrentScore = document.querySelector(".player-" + current_player.toString() + "-panel .player-current-score");
-    const currentScore = Number(showCurrentScore.innerHTML);
-    showCurrentScore.innerHTML = 0;
-
-    const showScore = document.querySelector(".player-" + current_player.toString() + "-panel .player-score");
-    showScore.innerHTML = (Number(showScore.innerHTML) + currentScore).toString();
-    showCurrentScore.innerHTML = 0;
+    const currentScore = Number(document.getElementById("current-" + current_player.toString()).innerHTML);
+    document.getElementById("current-" + current_player.toString()).innerHTML = "0";
+    document.getElementById("score-" + current_player.toString()).innerHTML = (Number(document.getElementById("score-" + current_player.toString()).innerHTML) + currentScore).toString();
     if (isWinner()) {
         document.querySelector(".player-" + current_player.toString() + "-panel").classList.remove("active");
         document.querySelector(".player-" + current_player.toString() + "-panel").classList.add("winner");
