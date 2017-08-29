@@ -8,9 +8,8 @@
  - The first player to reach 100 points on GLOBAL score wins the game
 
  */
-
-var current_player = 0;
-document.querySelector(".dice").style.display = 'none';
+var currentPlayer, endGame;
+init();
 
 function getRandomNumber() {
     var dice = Math.ceil(Math.random() * 6);
@@ -20,38 +19,60 @@ function getRandomNumber() {
     return dice;
 }
 function swapPlayer() {
-    document.querySelector(".player-" + current_player.toString() + "-panel").classList.remove("active");
-    current_player ^= 1;
-    document.querySelector(".player-" + current_player.toString() + "-panel").classList.add("active");
+    document.querySelector(".player-" + currentPlayer.toString() + "-panel").classList.remove("active");
+    currentPlayer ^= 1;
+    document.querySelector(".player-" + currentPlayer.toString() + "-panel").classList.add("active");
 }
 
 function isWinner() {
-    return (Number(document.getElementById("score-" + current_player.toString()).innerHTML) >= 30);
+    return (Number(document.getElementById("score-" + currentPlayer.toString()).innerHTML) >= 30);
 }
 
 document.querySelector(".btn-roll").addEventListener("click", function () {
+    if (endGame) {
+        return;
+    }
     const numberInDice = getRandomNumber();
     document.querySelector(".dice").style.display = 'block';
     document.querySelector(".dice").src = "dice-" + numberInDice.toString() + ".png";
-    const currentScore = Number(document.getElementById("current-" + current_player.toString()).innerHTML);
+    const currentScore = Number(document.getElementById("current-" + currentPlayer.toString()).innerHTML);
     // In case number 1
     if (numberInDice === 1) {
-        document.getElementById("current-" + current_player.toString()).innerHTML = "0";
+        document.getElementById("current-" + currentPlayer.toString()).innerHTML = "0";
         swapPlayer();
         return;
     }
-    document.getElementById("current-" + current_player.toString()).innerHTML = (currentScore + numberInDice).toString();
+    document.getElementById("current-" + currentPlayer.toString()).innerHTML = (currentScore + numberInDice).toString();
 });
 
 document.querySelector(".btn-hold").addEventListener("click", function () {
-    const currentScore = Number(document.getElementById("current-" + current_player.toString()).innerHTML);
-    document.getElementById("current-" + current_player.toString()).innerHTML = "0";
-    document.getElementById("score-" + current_player.toString()).innerHTML = (Number(document.getElementById("score-" + current_player.toString()).innerHTML) + currentScore).toString();
+    if (endGame) {
+        return;
+    }
+    const currentScore = Number(document.getElementById("current-" + currentPlayer.toString()).innerHTML);
+    document.getElementById("current-" + currentPlayer.toString()).innerHTML = "0";
+    document.getElementById("score-" + currentPlayer.toString()).innerHTML = (Number(document.getElementById("score-" + currentPlayer.toString()).innerHTML) + currentScore).toString();
     if (isWinner()) {
-        document.querySelector(".player-" + current_player.toString() + "-panel").classList.remove("active");
-        document.querySelector(".player-" + current_player.toString() + "-panel").classList.add("winner");
+        document.querySelector(".player-" + currentPlayer.toString() + "-panel").classList.remove("active");
+        document.querySelector(".player-" + currentPlayer.toString() + "-panel").classList.add("winner");
+        document.getElementById("name-" + currentPlayer.toString()).innerHTML = "Winner!";
+        endGame = true;
+        document.querySelector(".dice").style.display = 'none';
+        return;
     }
     swapPlayer();
 });
 
+function init () {
+    document.getElementById("score-0").innerHTML = "0";
+    document.getElementById("score-1").innerHTML = "0";
+    document.getElementById("current-0").innerHTML = "0";
+    document.getElementById("current-1").innerHTML = "0";
+    document.getElementById("name-0").innerHTML = "PLAYER 1";
+    document.getElementById("name-1").innerHTML = "PLAYER 2";
+    currentPlayer = 0;
+    endGame = false;
+    document.querySelector(".dice").style.display = 'none';
+}
 
+document.querySelector('.btn-new').addEventListener("click", init);
