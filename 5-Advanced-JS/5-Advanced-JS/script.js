@@ -26,7 +26,17 @@ var question = {
     options: [],
     answer: -1,
     checkAnswer: function (value) {
+        if (value == this.answer)
+            console.log("Right!");
+        else
+            console.log("Wrong answer");
         return value == this.answer;
+    },
+    showQuestion: function() {
+        console.log(this.name);
+        for (var i = 0; i < this.options.length; i++) {
+            console.log(this.options[i]);
+        }
     }
 };
 
@@ -57,19 +67,15 @@ question3 = Object.create(question, {
 const listQuestion = [question1, question2, question3];
 
 while (true) {
-    var index = Math.floor(Math.random() * listQuestion.size());
-    if (index == listQuestion.size())
+    var index = Math.floor(Math.random() * listQuestion.length);
+    if (index == listQuestion.length)
         index-=1;
     const currentQuestion = listQuestion[index];
-    console.log(currentQuestion.name);
+    currentQuestion.showQuestion();
     const answer = prompt('Your answer ?');
-    if (answer === "exit") {
-        console.log("Good bye!");
+    if (answer === 'exit') {
+        console.log("Good bye! See you again!");
         break;
     }
-    if (currentQuestion.checkAnswer(answer)) {
-        console.log("Right!");
-    } else {
-        console.log("Wrong answer!");
-    }
+    currentQuestion.checkAnswer(answer);
 }
