@@ -1,12 +1,4 @@
 /*
- YOUR CHALLENGES
- Change the game to follow these rules:
-
- 1. Add an input field to the HTML where players can set the winning score, so that they can change the predefined score of 100. (Hint: you can read that value with the .value property in JavaScript. This is a good oportunity to use google to figure this out :)
- 2. Add another dice1 to the game, so that there are two dice1s now. The player looses his current score when one of them is a 1. (Hint: you will need CSS to position the second dice1, so take a look at the CSS code for the first one.)
-*/
-
-/*
  GAME RULES:
 
  - The game has 2 players, playing in rounds
@@ -16,9 +8,23 @@
  - The first player to reach 100 points on GLOBAL score wins the game
 
  */
+/*
+ YOUR CHALLENGES
+ Change the game to follow these rules:
+
+ 1. Add an input field to the HTML where players can set the winning score, so that they can change the predefined score of 100. (Hint: you can read that value with the .value property in JavaScript. This is a good oportunity to use google to figure this out :)
+ 2. Add another dice1 to the game, so that there are two dice1s now. The player looses his current score when one of them is a 1. (Hint: you will need CSS to position the second dice1, so take a look at the CSS code for the first one.)
+
+ */
 var currentPlayer, endGame;
 init();
+/*
+ YOUR CHALLENGES
+ Change the game to follow these rules:
 
+ 1. Add an input field to the HTML where players can set the winning score, so that they can change the predefined score of 100. (Hint: you can read that value with the .value property in JavaScript. This is a good oportunity to use google to figure this out :)
+ 2. Add another dice1 to the game, so that there are two dice1s now. The player looses his current score when one of them is a 1. (Hint: you will need CSS to position the second dice1, so take a look at the CSS code for the first one.)
+*/
 function getRandomNumber() {
     var dice1 = Math.ceil(Math.random() * 6);
     if (dice1 === 0) {
