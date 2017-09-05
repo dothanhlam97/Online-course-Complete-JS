@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91a60de2-8c34-4388-a600-ece8d667fdc8" name="Default" comment="" />
+    <list default="true" id="91a60de2-8c34-4388-a600-ece8d667fdc8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/5-Advanced-JS/5-Advanced-JS/script.js" afterPath="$PROJECT_DIR$/5-Advanced-JS/5-Advanced-JS/script.js" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -295,12 +297,12 @@
       <workItem from="1504019145851" duration="1026000" />
       <workItem from="1504020737215" duration="2303000" />
       <workItem from="1504061014202" duration="3574000" />
-      <workItem from="1504196977303" duration="2890000" />
+      <workItem from="1504196977303" duration="2780000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9793000" />
+    <option name="totallyTimeSpent" value="9683000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -312,7 +314,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="52" y="-11" width="1549" height="912" extended-state="7" />
+    <frame x="52" y="-11" width="1549" height="912" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25982678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
