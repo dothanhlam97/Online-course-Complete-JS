@@ -11,6 +11,11 @@
 
 
     <script>
+
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+
         var point = {
             x: 0,
             y: 0,
@@ -18,19 +23,22 @@
             color: undefined,
             draw: function(canvas) {
                 canvas.beginPath();
-                canvas.arc(this.x, this.y, this.r, 0, 2*Math.PI);
+                canvas.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
+                canvas.fillStyle = this.color;
+                canvas.fill();
+                canvas.lineWidth = 5;
+                canvas.strokeStyle = this.color;
                 canvas.stroke();
             },
             drawLineTo: function(otherPoint, canvas) {
                 canvas.beginPath();
                 canvas.moveTo(this.x, this.y);
+                canvas.lineWidth = 2;
                 canvas.lineTo(otherPoint.x, otherPoint.y);
                 canvas.stroke();
             }
         };
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-        points = [];
+
         var newPoint = function (x_, y_, r_, color_) {
             var p =  Object.create(point, {
                 x: {value: x_ * 100},
@@ -40,19 +48,24 @@
             });
             console.log(p);
             return p;
-        }
+        };
+
+
+        // add point
+        points = [];
         points.push(newPoint(2, 4, 5, "red"));
         points.push(newPoint(5, 3, 7, "blue"));
         points.push(newPoint(6, 6, 15, "green"));
         points.push(newPoint(8, 5, 10, "yellow"));
         points.push(newPoint(10, 1, 3, "black"));
 
+
+        // draw point
         for (var i = 0; i < points.length; i++)
             points[i].draw(ctx);
+        // draw line
         for (var i = 0; i < points.length - 1; i++)
             points[i].drawLineTo(points[i+1], ctx);
-
-
     </script>
 </body>
 </html>
